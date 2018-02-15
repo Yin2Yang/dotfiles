@@ -44,10 +44,10 @@ bindsym $mod+d exec rofi -show combi -combi-mode "window#run#ssh"
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -136,6 +136,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# lock session
+bindsym $mod+l exec /home/prowsome/.i3/i3lock-fancy-multimonitor/lock -p
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -200,6 +202,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
+bindsym $mod+F12 exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
@@ -223,9 +226,9 @@ mode "$mode_system" {
 bindsym $mod+Pause mode "$mode_system"
 
 # window settings
-new_window  none
-new_float   none
-hide_edge_borders none
+new_window pixel 2 
+new_float pixel 2 
+hide_edge_borders smart 
 popup_during_fullscreen smart
 
 # assign program to workspace
@@ -243,4 +246,8 @@ smart_gaps on
 gaps inner 10
 gaps outer 0
 
+exec --no-start-id /home/prowsome/bin/work.sh
 
+workspace $ws2 output DP-6.2
+workspace $ws1 output DP-6.1
+workspace $ws3 output DP-6.1
